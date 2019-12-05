@@ -16,8 +16,8 @@
 
 $(document).ready();
 
-let currentMileage = 0;
-let oilChangeDue = 0;
+// let currentMileage = 0;
+// let oilChangeDue = 0;
 // let transOilDue = 0;
 // let coolantDue = 0;
 // let pwrSteeringDue = 0;
@@ -31,12 +31,12 @@ function showServiceResults(data) {
     for (let i = 0; i < data.length; i++) {
 
         let serviceData = $('<p>');
-        serviceData.text(data[i]);
+        serviceData.text(`Current mileage: ${data[i]} Miles`);
 
-        let removeServiceData = $('<button class="btn btn-secondary delete">');
-        removeServiceData.attr('service', i);
-        removeServiceData.text('X');
-        serviceData = serviceData.prepend(removeServiceData);
+        let deleteServiceData = $('<button class="btn btn-secondary delete">');
+        deleteServiceData.attr('service', i);
+        deleteServiceData.text('X');
+        serviceData = serviceData.prepend(deleteServiceData);
         $('#serviceResults').append(serviceData);
     }
 }
@@ -48,7 +48,7 @@ $('#submit').on('click', function(event){
         alert('Please fill out all the fields!')
     } else {
         data.push(addCarData);
-        localStorage.setItem('car-data', JSON.stringify(data));
+        localStorage.setItem('current-mileage-data', JSON.stringify(data));
         $('#addCurrentMileage').val();
     }
 });
@@ -59,11 +59,11 @@ $(document).on('click', '.delete', function(){
     document.location.reload();
     let carNumber = $(this).attr('service');
     data.splice(carNumber, 1);
-    localStorage.setItem('car-data', JSON.stringify(data));
+    localStorage.setItem('current-mileage-data', JSON.stringify(data));
 });
 
-let data = JSON.parse(localStorage.getItem('car-data'));
-
+let data = JSON.parse(localStorage.getItem('current-mileage-data'));
+console.log(data);
 if (!Array.isArray(data)) {
     data = [];
 }
@@ -76,8 +76,21 @@ showServiceResults(data);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 // function to work out next service interval
-function nextServiceDue(currentMileage, oilChangeDue) {
-    let oilAlert = currentMileage + oilChangeDue;
-    alert(`Your next oil change is due at: ${oilAlert} miles.`)
-}
+// function nextServiceDue(currentMileage, oilChangeDue) {
+//     let oilAlert = currentMileage + oilChangeDue;
+//     alert(`Your next oil change is due at: ${oilAlert} miles.`)
+// }
