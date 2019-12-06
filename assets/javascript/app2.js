@@ -16,15 +16,16 @@ let carArray = [];
             carArray.push(dataObj);
             localStorage.setItem('carArray', JSON.stringify(carArray));
 
-            if(existingData == null) existingData = [];
+            if(vehicle == null) vehicle = [];
             localStorage.setItem('dataObj', JSON.stringify(dataObj));
-            existingData.push(dataObj);
-            localStorage.setItem('carArray', JSON.stringify(existingData));
+            vehicle.push(dataObj);
+            localStorage.setItem('carArray', JSON.stringify(vehicle));
     });
 
     // Renders vehicle data to the page via Bootstrap cards
     let vehicle = JSON.parse(localStorage.getItem('carArray'));
     for (let i = 0; i < vehicle.length; i++) {
+        // console.log('vehicle: ', vehicle[i]);
         $('#carInfo').append(`
             <div class='col-xs-4 p-2 mt-3 mx-auto'>
                 <div class="card rounded-0" style="width: 18rem;">

@@ -29,6 +29,7 @@ button:hover {
     color: $bgTheme;
 }
 .card {
+    border: none;
     border-left: solid 7px $outlineTheme;
 }
 .card-title {
