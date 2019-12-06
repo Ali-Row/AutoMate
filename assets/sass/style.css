@@ -1,0 +1,41 @@
+body {
+  background: #292d3e;
+}
+h1,
+label,
+button {
+  color: #969db3 !important;
+}
+form {
+  max-width: 1050px;
+}
+button {
+  background: #533a99 !important;
+  border: #533a99 !important;
+}
+button:hover {
+  background: #3d2b6e !important;
+}
+.form-control,
+.card,
+.list-group-item,
+.card-body {
+  background: #969db3 !important;
+}
+.form-control {
+  border: #969db3 !important;
+}
+.form-control::placeholder,
+button {
+  color: #292d3e;
+}
+.card {
+  font-size: 20px;
+  border-left: solid 7px #533a99 !important;
+}
+a {
+  color: #533a99 !important;
+}
+a:hover {
+  color: #3d2b6e !important;
+}

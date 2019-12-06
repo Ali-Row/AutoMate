@@ -1,0 +1,40 @@
+$bgTheme: #292D3E;
+$outlineTheme: rgb(83, 58, 153) !important;
+$hoverTheme: rgb(61, 43, 110) !important;
+$textTheme: rgb(150, 157, 179) !important;
+
+body {
+    background: $bgTheme;
+}
+h1, label, button {
+    color: $textTheme;
+}
+form {
+    max-width: 1050px;
+}
+button {
+    background: $outlineTheme;
+    border: $outlineTheme;
+}
+button:hover {
+    background: $hoverTheme;
+}
+.form-control, .card, .list-group-item, .card-body {
+  background: $textTheme;
+}
+.form-control {
+    border: $textTheme;
+}
+.form-control::placeholder, button {
+    color: $bgTheme;
+}
+.card {
+    font-size: 20px;
+    border-left: solid 7px $outlineTheme;
+}
+a {
+    color: $outlineTheme;
+}
+a:hover {
+    color: $hoverTheme;
+}
