@@ -30,7 +30,8 @@ let carArray = [];
             <div class='col-xs-4 p-2 mt-3 mx-auto'>
                 <div class="card rounded-0" style="width: 18rem;">
                         <div class="card-body">
-                            <h5 class="card-title">${vehicle[i].Make}</h5>
+                            <button type="submit" class="btn btn-secondary rounded-0 d-flex justify-content-start" id="delete">X</button>
+                            <h5 class="card-title mt-3">${vehicle[i].Make}</h5>
                         </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"></li>
