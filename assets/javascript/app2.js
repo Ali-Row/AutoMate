@@ -2,6 +2,7 @@ $(document).ready();
 
 let carArray = [];
 
+    // This function adds a new car to local storage
     $('#submit').on('click', function(event){ 
         // event.preventDefault();
         let carMake = $('#addCarMake');
@@ -22,10 +23,10 @@ let carArray = [];
             localStorage.setItem('carArray', JSON.stringify(vehicle));
     });
 
-    // Renders vehicle data to the page via Bootstrap cards
+    /* Renders vehicle data to the page via Bootstrap cards 
+    (If there is an object in local storage it gets rendered to the DOM immediately) */
     let vehicle = JSON.parse(localStorage.getItem('carArray'));
     for (let i = 0; i < vehicle.length; i++) {
-        // console.log('vehicle: ', vehicle[i]);
         $('#carInfo').append(`
             <div class='col-xs-4 p-2 mt-3 mx-auto'>
                 <div class="card rounded-0" style="width: 18rem;">
@@ -48,7 +49,7 @@ let carArray = [];
         `);
     }
 
-    // function to work out next service interval
+    // This function works out the next service interval
     function nextServiceDue(currentMileage, nextInterval) {
         return parseInt(currentMileage) + parseInt(nextInterval);
     }
