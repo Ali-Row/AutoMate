@@ -1,96 +1,79 @@
-// Key issues to solve
-// Grab user input
-// store it in variables and in local storage
-// run functions when needed to work out next service
-
-// User stories
-// Be able to add the current mileage and have it automatically tell you when maintenance is due (Based on the interval you add yourself)
-// Store this info in local storage so I can view it at a later time
-// Be able to add you own service interval
-
-
-
-
-
-
-
 $(document).ready();
 
-// let currentMileage = 0;
-// let oilChangeDue = 0;
-// let transOilDue = 0;
-// let coolantDue = 0;
-// let pwrSteeringDue = 0;
-// let fuelFilterDue = 0;
-// let cabinFilterDue = 0;
+let carArray = [];
 
-// This function renders the data that is stored in Local Storage
-function showServiceResults(data) {
-    $('#serviceResults').empty();
+    // This function adds a new car to local storage
+    $('#submit').on('click', function(event){ 
+      
+        let carMake = $('#addCarMake');
+        let mileage = $("#addCurrentMileage");
+        let interval  = $("#addOilChangeInterval");
+      
+            dataObj = {
+                'Make'    : carMake.val().trim(),
+                'Mileage' : mileage.val().trim(),
+                'Interval': interval.val().trim()
+            };
 
-    for (let i = 0; i < data.length; i++) {
+            if (!dataObj.Make || !dataObj.Mileage || !dataObj.Interval) {
+                alert('Fill out all fields!');
+            } else {
 
-        let serviceData = $('<p>');
-        serviceData.text(`Current mileage: ${data[i]} Miles`);
+            carArray.push(dataObj);
+            localStorage.setItem('carArray', JSON.stringify(carArray));
 
-        let deleteServiceData = $('<button class="btn btn-secondary delete">');
-        deleteServiceData.attr('service', i);
-        deleteServiceData.text('X');
-        serviceData = serviceData.prepend(deleteServiceData);
-        $('#serviceResults').append(serviceData);
+            if(vehicle == null) vehicle = [];
+            localStorage.setItem('dataObj', JSON.stringify(dataObj));
+            vehicle.push(dataObj);
+            localStorage.setItem('carArray', JSON.stringify(vehicle));
+        }
+    });
+
+    let vehicle = JSON.parse(localStorage.getItem('carArray'));
+
+    /* Renders vehicle data to the page via Bootstrap cards 
+    (If there is an object in local storage it gets rendered to the DOM immediately) */
+    function renderCards() {
+
+        $('#carInfo').empty();
+
+        for (let i = 0; i < vehicle.length; i++) {   
+            
+            $('#carInfo').append(`
+                <div class='col-xs-4 p-2 mt-3 mx-auto'>
+                    <div class="card rounded-0" style="width: 18rem;">
+                            <div class="card-body">
+                            <button type="submit" class="btn btn-secondary rounded-0 d-flex justify-content-start" value="${i}" id="delete">X</button>
+                            <h5 class="card-title mt-3">${vehicle[i].Make}</h5>
+                            </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"></li>
+                            <li class="list-group-item text-left"><h6>Mileage:</h6>${vehicle[i].Mileage} miles</li>
+                            <li class="list-group-item text-left"><h6>Oil Change Interval:</h6>${vehicle[i].Interval} miles</li>
+                            <li class="list-group-item text-left"><h6>Oil Change Due:</h6>${nextServiceDue(vehicle[i].Mileage, vehicle[i].Interval)} miles</li>
+                        </ul>
+                        <div class="card-body">
+                            <a href="#" class="card-link">Help</a>
+                            <a href="#" class="card-link">More Service Data</a>
+                        </div>
+                    </div>
+                </div>
+            `);          
+        }         
     }
-}
 
-$('#submit').on('click', function(event){
-    // event.preventDefault();
-    let addCarData = $('#addCurrentMileage').val().trim();
-    if (!addCarData) {
-        alert('Please fill out all the fields!')
-    } else {
-        data.push(addCarData);
-        localStorage.setItem('current-mileage-data', JSON.stringify(data));
-        $('#addCurrentMileage').val();
+    // Delete function to remove car card from local storage
+    $(document).on('click', '#delete', function() {
+
+        let carNumber = $(this).val();
+        vehicle.splice(carNumber, 1);
+        localStorage.setItem('carArray', JSON.stringify(vehicle));   
+        document.location.reload(); 
+    });
+
+    // This function works out the next service interval
+    function nextServiceDue(currentMileage, nextInterval) {
+        return parseInt(currentMileage) + parseInt(nextInterval);
     }
-});
 
-// When the delete button is clicked
-$(document).on('click', '.delete', function(){
-
-    document.location.reload();
-    let carNumber = $(this).attr('service');
-    data.splice(carNumber, 1);
-    localStorage.setItem('current-mileage-data', JSON.stringify(data));
-});
-
-let data = JSON.parse(localStorage.getItem('current-mileage-data'));
-console.log(data);
-if (!Array.isArray(data)) {
-    data = [];
-}
-showServiceResults(data);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function to work out next service interval
-// function nextServiceDue(currentMileage, oilChangeDue) {
-//     let oilAlert = currentMileage + oilChangeDue;
-//     alert(`Your next oil change is due at: ${oilAlert} miles.`)
-// }
+renderCards();

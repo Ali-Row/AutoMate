@@ -35,8 +35,15 @@ button {
 }
 .card-title,
 h5 {
-  font-size: 22px;
+  font-size: 23px;
   font-weight: bold;
+}
+h6 {
+  font-size: 17px;
+  font-weight: bold;
+}
+li {
+  font-size: 19px;
 }
 a {
   color: #533a99 !important;

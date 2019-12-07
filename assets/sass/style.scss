@@ -33,8 +33,15 @@ button:hover {
     border-left: solid 7px $outlineTheme;
 }
 .card-title, h5 {
-    font-size: 22px;
+    font-size: 23px;
     font-weight: bold;
+}
+h6 {
+    font-size: 17px;
+    font-weight: bold;
+}
+li {
+    font-size: 19px;
 }
 a {
     color: $outlineTheme;
