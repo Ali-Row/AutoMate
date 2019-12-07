@@ -32,7 +32,7 @@ button:hover {
     border: none;
     border-left: solid 7px $outlineTheme;
 }
-.card-title {
+.card-title, h5 {
     font-size: 22px;
     font-weight: bold;
 }
