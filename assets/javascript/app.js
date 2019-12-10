@@ -12,7 +12,7 @@ clean up UI and make it more user friendly/simple
 
 let carArray = [];
 let transFluid = 50000;
-let coolant = 40000;
+let coolant = 50000;
 
     // This function adds a new car to local storage
     $('#submit').on('click', function(e){ 
@@ -82,7 +82,7 @@ let coolant = 40000;
     // Callback function to update mileage to a new amount
     function updateMileage(i){
         // When the edit button is clicked 
-        $(document).on('click', `#edit${i}`, function(){
+        $(document).one('click', `#edit${i}`, function(){
 
             editMiles = $(this).val();
 
