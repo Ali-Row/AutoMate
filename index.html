@@ -32,6 +32,11 @@
                             <input type="text" onkeypress="if (isNaN(this.value + String.fromCharCode(event.keyCode))) return false;"
                             class="form-control rounded-0" id="addOilChangeInterval" placeholder="eg. 3000">
                         </div>
+                        <div class="form-group">
+                          <label for="oilAmount">Oil Quantity (Quarts)</label>
+                          <input type="text" onkeypress="if (isNaN(this.value + String.fromCharCode(event.keyCode))) return false;"
+                          class="form-control rounded-0" id="addOilAmount" placeholder="eg. 5.5">
+                        </div>
         
                         <button type="submit" class="btn btn-secondary rounded-0" id="submit">Add Vehicle</button>
                     </form>
