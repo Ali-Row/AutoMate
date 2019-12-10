@@ -1,5 +1,8 @@
+* {
+  font-family: "Open Sans", sans-serif;
+}
 body {
-  background: #292d3e;
+  background: #292d3e !important;
 }
 h1,
 label,
@@ -9,11 +12,30 @@ button {
 form {
   max-width: 1050px;
 }
+#delete {
+  font-size: 21px;
+}
+#delete,
+.edit {
+  color: #6e6e6e !important;
+}
+#delete:hover,
+.edit:hover {
+  color: black !important;
+}
 button {
+  background: none !important;
+  border: none !important;
+  color: #4e4e50 !important;
+}
+.addVehicle,
+.updateMileage {
   background: #533a99 !important;
   border: #533a99 !important;
+  color: #969db3 !important;
 }
-button:hover {
+.addVehicle:hover,
+.updateMileage:hover {
   background: #3d2b6e !important;
 }
 .form-control,
@@ -27,7 +49,10 @@ button:hover {
 }
 .form-control::placeholder,
 button {
-  color: #292d3e;
+  color: #292d3e !important;
+}
+.updateMilesForm {
+  border: solid #292d3e !important;
 }
 .card {
   border: none;

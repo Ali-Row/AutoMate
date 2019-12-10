@@ -1,7 +1,14 @@
-$bgTheme: #292D3E;
+$bgTheme: #292D3E !important;
 $outlineTheme: rgb(83, 58, 153) !important;
 $hoverTheme: rgb(61, 43, 110) !important;
 $textTheme: rgb(150, 157, 179) !important;
+$btnTheme: rgb(78, 78, 80) !important;
+$lighterTextTheme: rgb(110, 110, 110) !important;
+
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
 
 body {
     background: $bgTheme;
@@ -12,21 +19,39 @@ h1, label, button {
 form {
     max-width: 1050px;
 }
+#delete {
+    font-size: 21px;
+}
+#delete, .edit {
+    color: $lighterTextTheme;
+}
+#delete:hover, .edit:hover {
+    color: black !important;
+}
 button {
+    background: none !important;
+    border: none !important;
+    color: $btnTheme;
+}
+.addVehicle, .updateMileage {
     background: $outlineTheme;
     border: $outlineTheme;
+    color: $textTheme;
 }
-button:hover {
+.addVehicle:hover, .updateMileage:hover {
     background: $hoverTheme;
 }
 .form-control, .card, .list-group-item, .card-body {
-  background: $textTheme;
+    background: $textTheme;
 }
 .form-control {
     border: $textTheme;
 }
 .form-control::placeholder, button {
     color: $bgTheme;
+}
+.updateMilesForm {
+    border: solid $bgTheme;
 }
 .card {
     border: none;

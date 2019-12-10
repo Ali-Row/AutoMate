@@ -56,12 +56,12 @@ let coolant = 40000;
                 <div class='col-xs-4 p-2 mt-3 mx-auto'>
                     <div class="card rounded-0" style="width: 18rem;">
                             <div class="card-body">
-                            <button type="submit" class="btn btn-secondary rounded-0 d-flex justify-content-start" value="${i}" id="delete">X</button>
+                            <button type="submit" class="btn btn-secondary rounded-0 float-right mt-2 p-2" value="${i}" id="delete">X</button>
                             <h5 class="card-title mt-3">${vehicle[i].Make}</h5>
                             </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"></li>
-                            <li class="list-group-item text-left update${i}"><h6>Mileage:</h6>${vehicle[i].Mileage} miles <button type="submit" class="btn rounded-0" value="${i}" id="edit${i}">Edit</button> </li> 
+                            <li class="list-group-item text-left update${i}"><h6>Mileage:</h6>${vehicle[i].Mileage} miles <button type="submit" class="btn rounded-0 edit mb-1" value="${i}" id="edit${i}">Edit</button> </li> 
                             <li class="list-group-item text-left"><h6>Oil Change Interval:</h6>${vehicle[i].Interval} miles</li>
                             <li class="list-group-item text-left"><h6>Oil Change Due:</h6>${nextServiceDue(vehicle[i].Mileage, vehicle[i].Interval)} miles</li>
                             <li class="list-group-item text-left"><h6>Oil Capacity:</h6>${vehicle[i].Capacity} quarts</li>
@@ -91,9 +91,9 @@ let coolant = 40000;
             <div class="form-group">
                 <label for="updateMileage">Update Mileage</label>
                 <input type="text" onkeypress="if (isNaN(this.value + String.fromCharCode(event.keyCode))) return false;"
-                class="form-control rounded-0" id="updateMileage${i}" placeholder="eg. 55,000">
+                class="form-control rounded-0 updateMilesForm" id="updateMileage${i}" placeholder="eg. 55,000">
             </div>
-            <button type="submit" class="btn btn-secondary rounded-0" id="update${i}">Update</button>
+            <button type="submit" class="btn btn-secondary rounded-0 updateMileage" id="update${i}">Update</button>
             </form>
             `)
 
