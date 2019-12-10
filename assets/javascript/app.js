@@ -1,5 +1,7 @@
 $(document).ready();
 
+AOS.init();
+
 /* Features to add:
 
 Add amount of quart's each car takes (Maybe include unit conversion such as litres or oz etc)
@@ -53,11 +55,11 @@ let coolant = 50000;
         $('#carInfo').empty();
         for (let i = 0; i < vehicle.length; i++){   
             $('#carInfo').append(`
-                <div class='col-xs-4 p-2 mt-4 mx-auto'>
+                <div class="col-xs-4 p-2 mt-4 mx-auto animated fadeIn" data-aos="flip-right">
                     <div class="card rounded-0" style="width: 15rem;">
                             <div class="card-body">
                             <button type="submit" class="btn btn-secondary rounded-0 float-right mt-2 p-2" value="${i}" id="delete">X</button>
-                            <h5 class="card-title mt-3">${vehicle[i].Make}</h5>
+                            <h5 class="card-title mt-3 text-left">${vehicle[i].Make}</h5>
                             </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"></li>
@@ -87,7 +89,7 @@ let coolant = 50000;
             editMiles = $(this).val();
 
             $(`.update${i}`).append(`
-            <form class="mx-auto">
+            <form class="mx-auto animated fadeIn slow-1s">
             <div class="form-group">
                 <label for="updateMileage">Update Mileage</label>
                 <input type="text" onkeypress="if (isNaN(this.value + String.fromCharCode(event.keyCode))) return false;"
