@@ -12,9 +12,6 @@ label,
 button {
   color: #969db3 !important;
 }
-form {
-  max-width: 1050px;
-}
 #delete {
   font-size: 21px;
 }
