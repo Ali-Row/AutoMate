@@ -81,7 +81,7 @@ let coolant = 40000;
 
     // Callback function to update mileage to a new amount
     function updateMileage(i){
-        // Edit function to edit mileage 
+        // When the edit button is clicked 
         $(document).on('click', `#edit${i}`, function(){
 
             editMiles = $(this).val();
@@ -98,16 +98,12 @@ let coolant = 40000;
             `)
 
             // When the update button is clicked it updates the object in local storage
-            $(document).on('click', `#update${i}`, function(e){
+            $(document).on('click', `#update${i}`, function(){
 
                 newMiles = $(`#updateMileage${i}`).val().trim();
-                console.log(newMiles);
                 vehicle[editMiles].Mileage = newMiles;
-                console.log(editMiles);
                 localStorage.setItem('carArray', JSON.stringify(vehicle));
-                e.preventDefault();
-        
-                // document.location.reload();   
+                document.location.reload();   
             });
 
         });
