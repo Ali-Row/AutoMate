@@ -13,8 +13,8 @@ clean up UI and make it more user friendly/simple
 */
 
 let carArray = [];
-let transFluid = 50000;
-let coolant = 50000;
+// let transFluid = 50000;
+// let coolant = 50000;
 
     // This function adds a new car to local storage
     $('#submit').one('click', function(e){ 
@@ -39,7 +39,7 @@ let coolant = 50000;
             carArray.push(dataObj);
             localStorage.setItem('carArray', JSON.stringify(carArray));
 
-            if(vehicle == null) vehicle = [];
+            if(!vehicle) vehicle = [];
             localStorage.setItem('dataObj', JSON.stringify(dataObj));
             vehicle.push(dataObj);
             localStorage.setItem('carArray', JSON.stringify(vehicle));
@@ -55,7 +55,7 @@ let coolant = 50000;
         $('#carInfo').empty();
         for (let i = 0; i < vehicle.length; i++){   
             $('#carInfo').append(`
-                <div class="col-xs-4 p-2 mt-4 mx-auto animated fadeIn" data-aos="flip-right">
+                <div class="col-xs-4 p-2 mt-4 mx-auto animated fadeIn" data-aos="flip-up">
                     <div class="card rounded-0" style="width: 15rem;">
                             <div class="card-body">
                             <button type="submit" class="btn btn-secondary rounded-0 float-right mt-2 p-2" value="${i}" id="delete">X</button>
