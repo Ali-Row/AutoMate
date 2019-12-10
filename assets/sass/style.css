@@ -1,6 +1,10 @@
 * {
   font-family: "Open Sans", sans-serif;
 }
+.autoMate {
+  font-family: "Contrail One", cursive;
+  margin-left: 236px;
+}
 body {
   background: #292d3e !important;
 }
