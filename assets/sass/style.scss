@@ -40,7 +40,7 @@ button {
 .addVehicle:hover, .updateMileage:hover {
     background: $hoverTheme;
 }
-.form-control, .card, .list-group-item, .card-body {
+.form-control, .card, .list-group-item, .card-body, .modal-content {
     background: $textTheme;
 }
 .form-control {
@@ -52,7 +52,7 @@ button {
 .updateMilesForm {
     border: solid $bgTheme;
 }
-.card {
+.card, .modal-content {
     border: none;
     border-left: solid 7px $outlineTheme;
 }
@@ -60,12 +60,15 @@ button {
     font-size: 23px;
     font-weight: bold;
 }
-h6 {
+h6, .updateLabel {
     font-size: 17px;
     font-weight: bold;
 }
 li {
     font-size: 19px;
+}
+.updateLabel {
+    color: $bgTheme;
 }
 a {
     color: $outlineTheme;

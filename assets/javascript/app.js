@@ -63,23 +63,24 @@ let carArray = [];
                             </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"></li>
-                            <li class="list-group-item text-left update${i}"><h6>Mileage:</h6>${vehicle[i].Mileage} miles <button type="submit" class="btn rounded-0 edit mb-1" value="${i}" id="edit${i}">Edit</button> </li> 
-                            <li class="list-group-item text-left"><h6>Oil Change Interval:</h6>${vehicle[i].Interval} miles</li>
-                            <li class="list-group-item text-left"><h6>Oil Change Due:</h6>${nextServiceDue(vehicle[i].Mileage, vehicle[i].Interval)} miles</li>
-                            <li class="list-group-item text-left"><h6>Oil Capacity:</h6>${vehicle[i].Capacity} quarts</li>
+                            <li class="list-group-item text-left update${i}"><h6>Last Service:</h6>${vehicle[i].Mileage} miles <button type="submit" class="btn rounded-0 edit mb-1" value="${i}" id="edit${i}">Edit</button> <br> 
+                            <h6>Next Service:</h6>${nextServiceDue(vehicle[i].Mileage, vehicle[i].Interval)} miles</li> 
+                          
                         </ul>
                         <div class="card-body">
-                            <a href="#" class="card-link">Help</a>
-                            <a href="#" class="card-link">More Service Info</a>
+                            <a href="#" class="card-link" data-toggle="modal" data-target="#moreServiceModal${i}" value="${i}" id="modal${i}">More Service Info</a>
                         </div>
                     </div>
                 </div>
             `);  
             
            updateMileage(i);
-
+           renderModal(i);
         }         
     }
+
+    // <li class="list-group-item text-left"><h6>Oil Change Interval:</h6>${vehicle[i].Interval} miles</li>
+    // <li class="list-group-item text-left"><h6>Oil Capacity:</h6>${vehicle[i].Capacity} quarts</li>
 
     // Callback function to update mileage to a new amount
     function updateMileage(i){
@@ -91,7 +92,7 @@ let carArray = [];
             $(`.update${i}`).append(`
             <form class="mx-auto animated fadeIn slow-1s">
             <div class="form-group">
-                <label for="updateMileage">Update Mileage</label>
+                <label for="updateMileage" class="updateLabel">Update Mileage:</label>
                 <input type="text" onkeypress="if (isNaN(this.value + String.fromCharCode(event.keyCode))) return false;"
                 class="form-control rounded-0 updateMilesForm" id="updateMileage${i}" placeholder="eg. 55,000">
             </div>
@@ -121,9 +122,63 @@ let carArray = [];
     });
 
     // This function works out the next service interval
-    function nextServiceDue(currentMileage, nextInterval){
-        return parseInt(currentMileage) + parseInt(nextInterval);
-    }
+    let nextServiceDue = (currentMileage, nextInterval) => parseInt(currentMileage) + parseInt(nextInterval);
+    
+    // Render more service info modal function
+    function renderModal(i){
+
+        $(document).on('click', `#modal${i}`, function(){
+
+        $('#renderModal').append(`
+
+            <div class="modal fade" id="moreServiceModal${i}" tabindex="-1" role="dialog" aria-labelledby="moreService" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content rounded-0">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">More Service Info</h5>
+                    <button type="button" data-dismiss="modal" aria-label="Close">X</button>
+                </div>
+                <div class="modal-body">
+
+                    
+
+                </div>
+                <div class="modal-footer">
+        
+                </div>
+                </div>
+            </div>
+            </div>
+            `)
+            
+        });
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     function inspectionDate(){
       

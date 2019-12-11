@@ -42,7 +42,8 @@ button {
 .form-control,
 .card,
 .list-group-item,
-.card-body {
+.card-body,
+.modal-content {
   background: #969db3 !important;
 }
 .form-control {
@@ -55,7 +56,8 @@ button {
 .updateMilesForm {
   border: solid #292d3e !important;
 }
-.card {
+.card,
+.modal-content {
   border: none;
   border-left: solid 7px #533a99 !important;
 }
@@ -64,12 +66,16 @@ h5 {
   font-size: 23px;
   font-weight: bold;
 }
-h6 {
+h6,
+.updateLabel {
   font-size: 17px;
   font-weight: bold;
 }
 li {
   font-size: 19px;
+}
+.updateLabel {
+  color: #292d3e !important;
 }
 a {
   color: #533a99 !important;
