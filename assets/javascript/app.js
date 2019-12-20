@@ -15,7 +15,7 @@ clean up UI and make it more user friendly/simple
 let carArray = [];
 // let transFluid = 50000;
 // let coolant = 50000;
-
+let airFilterInterval = 20000;
     // This function adds a new car to local storage
     $('#submit').one('click', function(e){ 
 
@@ -29,7 +29,12 @@ let carArray = [];
                 'Make'     : carMake.val().trim(),
                 'Mileage'  : mileage.val().trim(),
                 'Interval' : interval.val().trim(),
-                'Capacity' : capacity.val().trim()
+                'Capacity' : capacity.val().trim(),
+                'AirFilter': 0,
+                'Coolant'  : 0,
+                'FuelFilter': 0,
+                'CabinFiler': 0,
+                'TransFluid': 0
             };
 
             if (!dataObj.Make || !dataObj.Mileage || !dataObj.Interval || !dataObj.Capacity){
@@ -83,34 +88,34 @@ let carArray = [];
     // <li class="list-group-item text-left"><h6>Oil Capacity:</h6>${vehicle[i].Capacity} quarts</li>
 
     // Callback function to update mileage to a new amount
-    function updateMileage(i){
-        // When the edit button is clicked 
-        $(document).one('click', `#edit${i}`, function(){
+    // function updateMileage(i){
+    //     // When the edit button is clicked 
+    //     $(document).one('click', `#edit${i}`, function(){
 
-            editMiles = $(this).val();
+    //         editMiles = $(this).val();
 
-            $(`.update${i}`).append(`
-            <form class="mx-auto animated fadeIn slow-1s">
-            <div class="form-group">
-                <label for="updateMileage" class="updateLabel">Update Mileage:</label>
-                <input type="text" onkeypress="if (isNaN(this.value + String.fromCharCode(event.keyCode))) return false;"
-                class="form-control rounded-0 updateMilesForm" id="updateMileage${i}" placeholder="eg. 55,000">
-            </div>
-            <button type="submit" class="btn btn-secondary rounded-0 updateMileage" id="update${i}">Update</button>
-            </form>
-            `)
+    //         $(`.update${i}`).append(`
+    //         <form class="mx-auto animated fadeIn slow-1s">
+    //         <div class="form-group">
+    //             <label for="updateMileage" class="updateLabel">Update Mileage:</label>
+    //             <input type="text" onkeypress="if (isNaN(this.value + String.fromCharCode(event.keyCode))) return false;"
+    //             class="form-control rounded-0 updateMilesForm" id="updateMileage${i}" placeholder="eg. 55,000">
+    //         </div>
+    //         <button type="submit" class="btn btn-secondary rounded-0 updateMileage" id="update${i}">Update</button>
+    //         </form>
+    //         `)
 
-            // When the update button is clicked it updates the object in local storage
-            $(document).on('click', `#update${i}`, function(){
+    //         // When the update button is clicked it updates the object in local storage
+    //         $(document).on('click', `#update${i}`, function(){
 
-                newMiles = $(`#updateMileage${i}`).val().trim();
-                vehicle[editMiles].Mileage = newMiles;
-                localStorage.setItem('carArray', JSON.stringify(vehicle));
-                document.location.reload();   
-            });
+    //             newMiles = $(`#updateMileage${i}`).val().trim();
+    //             vehicle[editMiles].Mileage = newMiles;
+    //             localStorage.setItem('carArray', JSON.stringify(vehicle));
+    //             document.location.reload();   
+    //         });
 
-        });
-    }
+    //     });
+    // }
 
     // Delete function to remove car card from local storage
     $(document).one('click', '#delete', function(){
@@ -131,7 +136,7 @@ let carArray = [];
 
         $('#renderModal').append(`
 
-            <div class="modal fade" id="moreServiceModal${i}" tabindex="-1" role="dialog" aria-labelledby="moreService" aria-hidden="true">
+            <div class="modal fade animated flipInY" id="moreServiceModal${i}" tabindex="-1" role="dialog" aria-labelledby="moreService" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content rounded-0">
                 <div class="modal-header">
@@ -139,13 +144,109 @@ let carArray = [];
                     <button type="button" data-dismiss="modal" aria-label="Close">X</button>
                 </div>
                 <div class="modal-body">
+    
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Air Filter</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" id="lastService${i}">Last Service:</th>
+                                <td>${vehicle[i].AirFilter} miles</td>
+                                <td></td>
+                                <td><button type="submit" class="btn rounded-0" value="${i}" id="updateModal${i}">Update</button></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Next Service:</th>
+                                <td>${nextServiceDue(vehicle[i].AirFilter, airFilterInterval)} miles</td>
+                                <td></td>
+                                <td></td>
+                            </tr>                         
+                        </tbody>
+                    </table>
 
-                    
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Spark Plugs</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Last Service:</th>
+                                <td>${5500} miles</td>
+                                <td></td>
+                                <td><button type="submit" class="btn rounded-0" value="${i}" id="updateModal${i}">Update</button></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Next Service:</th>
+                                <td>${20000} miles</td>
+                                <td></td>
+                                <td></td>
+                            </tr>                  
+                        </tbody>
+                    </table>
+
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Coolant</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Last Service:</th>
+                                <td>${5500} miles</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Next Service:</th>
+                                <td>${20000} miles</td>
+                                <td></td>
+                                <td></td>
+                            </tr>                  
+                        </tbody>
+                    </table>
+
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Cabin Filter</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Last Service:</th>
+                                <td>${"12/05/2019"}</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Next Service:</th>
+                                <td>${"12/05/2020"}</td>
+                                <td></td>
+                                <td></td>
+                            </tr>                  
+                        </tbody>
+                    </table>
 
                 </div>
-                <div class="modal-footer">
-        
-                </div>
+              
                 </div>
             </div>
             </div>
@@ -155,6 +256,34 @@ let carArray = [];
     };
 
 
+    function updateMileage(i, edit, id, id2, inputVal, objectKey){
+        // When the update button is clicked 
+        $(document).one('click', edit, function(objectKey){
+
+            editMiles = $(this).val();
+
+            id.append(`
+            <form class="mx-auto animated fadeIn slow-1s">
+            <div class="form-group">
+                <label for="updateMileage" class="updateLabel">Update Mileage:</label>
+                <input type="text" onkeypress="if (isNaN(this.value + String.fromCharCode(event.keyCode))) return false;"
+                class="form-control rounded-0 updateMilesForm" placeholder="eg. 55,000">
+            </div>
+            <button type="submit" class="btn btn-secondary rounded-0 ${id2}">Update</button>
+            </form>
+            `)
+
+            // When the update button is clicked it updates the object in local storage
+            $(document).on('click', id2, function(objectKey){
+
+                newMiles = inputVal;
+                vehicle[editMiles].objectKey = newMiles;
+                localStorage.setItem('carArray', JSON.stringify(vehicle));
+                document.location.reload();   
+            });
+
+        });
+    }
 
 
 
@@ -179,15 +308,14 @@ let carArray = [];
 
 
 
-
-    function inspectionDate(){
+    // function inspectionDate(){
       
-        let today = new Date();
-        let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-        let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        let dateTime = date+' '+time;    
-        console.log(dateTime);
-    };
+    //     let today = new Date();
+    //     let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    //     let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    //     let dateTime = date+' '+time;    
+    //     console.log(dateTime);
+    // };
 
 renderCards();
 // inspectionDate();

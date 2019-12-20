@@ -1,4 +1,7 @@
 $bgTheme: #292D3E !important;
+$scrollHoverTheme: rgb(62, 67, 88) !important;
+$scrollTheme: rgb(91, 97, 122) !important;
+$scrollLightTheme: rgb(122, 129, 156) !important;
 $outlineTheme: rgb(83, 58, 153) !important;
 $hoverTheme: rgb(61, 43, 110) !important;
 $textTheme: rgb(150, 157, 179) !important;
@@ -52,7 +55,7 @@ button {
 .updateMilesForm {
     border: solid $bgTheme;
 }
-.card, .modal-content {
+.card {
     border: none;
     border-left: solid 7px $outlineTheme;
 }
@@ -70,9 +73,40 @@ li {
 .updateLabel {
     color: $bgTheme;
 }
+.table {
+    border-bottom: solid 5px $outlineTheme;
+    background: $bgTheme;
+    color: $textTheme;
+}
+.modal-header {
+    border-bottom: solid 1px $btnTheme;
+}
+th {
+    font-size: 15px;
+}
 a {
     color: $outlineTheme;
 }
 a:hover {
     color: $hoverTheme;
 }
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: $scrollLightTheme; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $scrollTheme; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: $scrollHoverTheme; 
+  }
