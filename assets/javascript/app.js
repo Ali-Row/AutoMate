@@ -88,34 +88,34 @@ let airFilterInterval = 20000;
     // <li class="list-group-item text-left"><h6>Oil Capacity:</h6>${vehicle[i].Capacity} quarts</li>
 
     // Callback function to update mileage to a new amount
-    // function updateMileage(i){
-    //     // When the edit button is clicked 
-    //     $(document).one('click', `#edit${i}`, function(){
+    function updateMileage(i){
+        // When the edit button is clicked 
+        $(document).one('click', `#edit${i}`, function(){
 
-    //         editMiles = $(this).val();
+            editMiles = $(this).val();
 
-    //         $(`.update${i}`).append(`
-    //         <form class="mx-auto animated fadeIn slow-1s">
-    //         <div class="form-group">
-    //             <label for="updateMileage" class="updateLabel">Update Mileage:</label>
-    //             <input type="text" onkeypress="if (isNaN(this.value + String.fromCharCode(event.keyCode))) return false;"
-    //             class="form-control rounded-0 updateMilesForm" id="updateMileage${i}" placeholder="eg. 55,000">
-    //         </div>
-    //         <button type="submit" class="btn btn-secondary rounded-0 updateMileage" id="update${i}">Update</button>
-    //         </form>
-    //         `)
+            $(`.update${i}`).append(`
+            <form class="mx-auto animated fadeIn slow-1s">
+            <div class="form-group">
+                <label for="updateMileage" class="updateLabel">Update Mileage:</label>
+                <input type="text" onkeypress="if (isNaN(this.value + String.fromCharCode(event.keyCode))) return false;"
+                class="form-control rounded-0 updateMilesForm" id="updateMileage${i}" placeholder="eg. 55,000">
+            </div>
+            <button type="submit" class="btn btn-secondary rounded-0 updateMileage" id="update${i}">Update</button>
+            </form>
+            `)
 
-    //         // When the update button is clicked it updates the object in local storage
-    //         $(document).on('click', `#update${i}`, function(){
+            // When the update button is clicked it updates the object in local storage
+            $(document).on('click', `#update${i}`, function(){
 
-    //             newMiles = $(`#updateMileage${i}`).val().trim();
-    //             vehicle[editMiles].Mileage = newMiles;
-    //             localStorage.setItem('carArray', JSON.stringify(vehicle));
-    //             document.location.reload();   
-    //         });
+                newMiles = $(`#updateMileage${i}`).val().trim();
+                vehicle[editMiles].Mileage = newMiles;
+                localStorage.setItem('carArray', JSON.stringify(vehicle));
+                document.location.reload();   
+            });
 
-    //     });
-    // }
+        });
+    }
 
     // Delete function to remove car card from local storage
     $(document).one('click', '#delete', function(){
@@ -127,7 +127,7 @@ let airFilterInterval = 20000;
     });
 
     // This function works out the next service interval
-    let nextServiceDue = (currentMileage, nextInterval) => parseInt(currentMileage) + parseInt(nextInterval);
+    let nextServiceDue = (x, y) => parseInt(x) + parseInt(y);
     
     // Render more service info modal function
     function renderModal(i){
